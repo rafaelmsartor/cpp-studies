@@ -2,6 +2,12 @@
 #include <iostream>
 #include <map>
 
+// Prior to C++17, we had to remove the items of which we need to change the key value from
+// the tree, in order to reinsert them. The downside of this approach is that this always
+// needlessly reallocates some memory, which sounds bad in terms of performance.
+// Since C++17, we can remove and reinsert map nodes without any reallocation of memory.
+// We will see how that works in this recipe.
+
 template <typename M>
 void print( M const& m )
 {
