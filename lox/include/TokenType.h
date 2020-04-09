@@ -61,7 +61,7 @@ namespace lox
     };
 
 
-    char const* TokenTypeToString( lox::TokenType type );
+    std::string TokenTypeToString( lox::TokenType type );
 }
 
 std::ostream& operator<<( std::ostream& os, lox::TokenType const& type );

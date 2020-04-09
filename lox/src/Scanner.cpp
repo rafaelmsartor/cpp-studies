@@ -238,7 +238,7 @@ std::ostream& operator<<( std::ostream& os, lox::TokenType const& type )
     return os << lox::TokenTypeToString( type );
 }
 
-char const* lox::TokenTypeToString( lox::TokenType type )
+std::string lox::TokenTypeToString( lox::TokenType type )
 {
     switch( type )
     {
