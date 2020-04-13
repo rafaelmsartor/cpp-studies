@@ -178,7 +178,7 @@ std::string lox::Scanner::scanString()
 
     advance();
 
-    std::string value = source_.substr( start_ + 1, current_ - start_ );
+    std::string value = source_.substr( start_ + 1, current_ - start_ - 2 );
     return value;
  }
 
