@@ -23,6 +23,7 @@ target_link_libraries( lox lox_lib )
 
 add_executable( lox_tests
 	tests/token_type_test.cpp
-)
+    tests/scanner_test.cpp
+ )
 
 target_link_libraries( lox_tests lox_lib)
