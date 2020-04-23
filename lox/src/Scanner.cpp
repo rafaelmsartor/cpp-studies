@@ -7,6 +7,7 @@
 #include <Interpreter.h>
 #include <stdexcept>
 #include <map>
+#include <type_traits>
 
 const std::map<std::string, lox::TokenType> keywords =
 {
@@ -135,7 +136,7 @@ void lox::Scanner::addToken( lox::TokenType type )
     addToken( type, nullptr );
 }
 
-void lox::Scanner::addToken( lox::TokenType type, std::any const& literal )
+void lox::Scanner::addToken( lox::TokenType type, literal_t const& literal )
 {
     std::string text = source_.substr( start_, current_ - start_ );
     tokens_.push_back( Token{ type, text, literal, line_ } );
@@ -212,25 +213,23 @@ void lox::Scanner::identifier()
 
 std::ostream& operator<<( std::ostream& strm, lox::Token const& token )
 {
-    strm << token.type << " " << token.lexeme;
+    strm << token.type << " " << token.lexeme << " " << token.literal;
+    return strm;
+}
 
-    if(  !token.literal.has_value()
-       || token.literal.type() == typeid( nullptr ) )
-    {
-        return strm;
-    }
+std::ostream& operator<<( std::ostream& strm, lox::literal_t const& literal )
+{
+    std::visit( [&strm]( auto& arg )
+        {
+            using T = std::decay_t<decltype(arg)>;
 
-    if( token.literal.type() == typeid( std::string ) )
-    {
-        return strm << " " << std::any_cast<std::string>( token.literal );
-    }
+            if constexpr( std::is_same_v<T, std::string> || std::is_same_v<T, double> )
+            {
+                strm << arg;
+            }
+        }, literal );
 
-    if( token.literal.type() == typeid( double ) )
-    {
-        return strm << " " << std::any_cast<double>( token.literal );
-    }
-
-    return strm << " UNKNOWN TYPE: " << token.literal.type().name();
+    return strm;
 }
 
 std::ostream& operator<<( std::ostream& os, lox::TokenType const& type )

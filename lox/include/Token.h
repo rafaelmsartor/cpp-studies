@@ -7,19 +7,21 @@
 
 #include <TokenType.h>
 
-#include <any>
 #include <sstream>
+#include <variant>
 
 namespace lox
 {
+    typedef std::variant<std::string, double, std::nullptr_t> literal_t;
+
     struct Token
     {
         TokenType   const type;
         std::string const lexeme;
-        std::any    const literal;
+        literal_t   const literal;
         size_t      const line;
 
-        Token( TokenType type, std::string lexeme, std::any literal, size_t line )
+        Token( TokenType type, std::string lexeme, literal_t literal, size_t line )
             : type( type )
             , lexeme( std::move(lexeme) )
             , literal( std::move(literal) )
@@ -29,4 +31,5 @@ namespace lox
 }
 
 std::ostream& operator<<( std::ostream& strm, lox::Token const& token );
+std::ostream& operator<<( std::ostream& strm, lox::literal_t const& literal );
 #endif //LOX_TOKEN_H

@@ -33,8 +33,7 @@ SCENARIO( "Token lexers" )
             }
             AND_THEN( "the value is parsed correctly" )
             {
-                REQUIRE( tokens[3].literal.type() == typeid(double) );
-                REQUIRE( std::any_cast<double>(tokens[3].literal) == 42.0 );
+                REQUIRE( std::get<double>( tokens[3].literal ) == 42.0 );
             }
         }
 
@@ -56,8 +55,7 @@ SCENARIO( "Token lexers" )
             }
             AND_THEN( "the value is parsed correctly" )
             {
-                REQUIRE( tokens[2].literal.type() == typeid(std::string) );
-                REQUIRE( std::any_cast<std::string>(tokens[2].literal) == "test string" );
+                REQUIRE( std::get<std::string>( tokens[2].literal ) == "test string" );
             }
         }
 

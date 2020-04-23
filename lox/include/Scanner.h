@@ -29,7 +29,7 @@ namespace lox
         void scanToken();
         char advance();
         void addToken( TokenType type );
-        void addToken( TokenType type, std::any const& literal );
+        void addToken( TokenType type, literal_t const& literal );
         bool match( char const expected );
         char peek() const;
         char peekNext() const;
