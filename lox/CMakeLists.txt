@@ -8,6 +8,7 @@ include_directories( ${CMAKE_SOURCE_DIR}/include )
 add_library( lox_lib STATIC
         src/Interpreter.cpp
         src/Scanner.cpp
+        src/Expressions.cpp
 )
 
 # Genereate the interpreter executable
@@ -24,6 +25,6 @@ target_link_libraries( lox lox_lib )
 add_executable( lox_tests
 	tests/token_type_test.cpp
     tests/scanner_test.cpp
- )
+)
 
 target_link_libraries( lox_tests lox_lib)
