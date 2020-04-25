@@ -47,10 +47,10 @@ namespace lox
         const Token operator_;
         const std::unique_ptr<Expression> right_;
 
-        Binary( std::unique_ptr<Expression> left, Token oper, std::unique_ptr<Expression> right )
-            : left_{ std::move(left) }
+        Binary( Expression* left, Token oper, Expression* right )
+            : left_{ left }
             , operator_{ oper }
-            , right_{ std::move(right) }
+            , right_{ right }
         {}
     };
 
@@ -58,8 +58,8 @@ namespace lox
     {
         const std::unique_ptr<Expression> expression_;
 
-        Grouping( std::unique_ptr<Expression> expression )
-            : expression_{ std::move(expression) }
+        Grouping( Expression* expression )
+            : expression_{ expression }
         {}
     };
 
@@ -77,9 +77,9 @@ namespace lox
         const Token operator_;
         const std::unique_ptr<Expression> right_;
 
-        Unary( Token oper, std::unique_ptr<Expression> right )
+        Unary( Token oper, Expression* right )
             : operator_{ oper }
-            , right_{ std::move(right) }
+            , right_{ right }
         {}
     };
 } //namespace lox
