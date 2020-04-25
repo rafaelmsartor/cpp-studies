@@ -24,7 +24,6 @@ int main( int argc, char** argv )
     {
         runPrompt();
     }
-
     return 0;
 }
 
@@ -60,7 +59,10 @@ void runPrompt()
     {
         std::cout << "> " << std::flush;
         std::string line;
-        std::cin >> line;
+        std::getline( std::cin, line );
+
+        if( line == "quit" )
+            break;
 
         interpreter.run( line );
     }
