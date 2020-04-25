@@ -113,11 +113,13 @@ bool lox::Parser::match( T type, Args... types )
 {
     if constexpr( sizeof...(types) > 0 )
     {
-        if( !match( types... ) && check( type ) )
+        bool matched = match( types... );
+        if( !matched && check( type ) )
         {
             advance();
             return true;
         }
+        return matched;
     }
     else
     {
@@ -126,8 +128,8 @@ bool lox::Parser::match( T type, Args... types )
             advance();
             return true;
         }
+        return false;
     }
-    return false;
 }
 
 bool lox::Parser::check( lox::TokenType type ) const
