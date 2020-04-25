@@ -9,6 +9,7 @@ add_library( lox_lib STATIC
         src/Interpreter.cpp
         src/Scanner.cpp
         src/Expressions.cpp
+        src/Parser.cpp
 )
 
 # Genereate the interpreter executable
