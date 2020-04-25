@@ -108,7 +108,7 @@ void lox::Scanner::scanToken()
             {
                 addToken( TokenType::Number, scanNumber() );
             }
-            catch( std::invalid_argument& e )
+            catch( std::invalid_argument& )
             {
                 interpreter_.error( line_, "Error parsing number." );
             }
@@ -226,6 +226,14 @@ std::ostream& operator<<( std::ostream& strm, lox::literal_t const& literal )
             if constexpr( std::is_same_v<T, std::string> || std::is_same_v<T, double> )
             {
                 strm << arg;
+            }
+            else if constexpr( std::is_same_v<T, bool> )
+            {
+                strm << (arg ? "true" : "false");
+            }
+            else
+            {
+                strm << "nil";
             }
         }, literal );
 

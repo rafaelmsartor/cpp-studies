@@ -9,6 +9,8 @@
 
 namespace lox
 {
+    struct Token;
+
     class Interpreter
     {
         bool hadError_{ false };
@@ -17,6 +19,7 @@ namespace lox
         void run( std::string const& );
 
         void error( size_t, std::string const& );
+        void error( Token const&, std::string const& );
         [[nodiscard]]bool hadError() const { return hadError_; }
         void report( size_t, std::string const&, std::string const& );
     };
