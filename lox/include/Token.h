@@ -12,7 +12,7 @@
 
 namespace lox
 {
-    typedef std::variant<std::string, double, std::nullptr_t> literal_t;
+    typedef std::variant<std::string, double, bool, std::nullptr_t> literal_t;
 
     struct Token
     {
