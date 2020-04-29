@@ -24,8 +24,9 @@ target_link_libraries( lox lox_lib )
 # Generate the test binaries
 
 add_executable( lox_tests
-	tests/token_type_test.cpp
+    tests/token_type_test.cpp
     tests/scanner_test.cpp
+    tests/parser_test.cpp
 )
 
 target_link_libraries( lox_tests lox_lib)
