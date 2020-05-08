@@ -10,6 +10,7 @@ add_library( lox_lib STATIC
         src/Scanner.cpp
         src/Expressions.cpp
         src/Parser.cpp
+        src/Evaluator.cpp
 )
 
 # Genereate the interpreter executable
@@ -29,4 +30,4 @@ add_executable( lox_tests
     tests/parser_test.cpp
 )
 
-target_link_libraries( lox_tests lox_lib)
+target_link_libraries( lox_tests lox_lib )
